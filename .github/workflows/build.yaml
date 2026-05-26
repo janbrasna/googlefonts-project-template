@@ -10,7 +10,8 @@ on:
     tags:
       - '*'
 
-permissions: write-all
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -108,11 +109,15 @@ jobs:
     if: ${{ github.ref_type == 'tag' }}
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       ZIP_NAME: ${{ needs.build.outputs.zip_name }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Use font artifacts from CI
         uses: actions/download-artifact@v7
         with:
