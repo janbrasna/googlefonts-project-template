@@ -19,11 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
-    - name: Set up Python 3.11
+    - name: Set up Python 3.13
       uses: actions/setup-python@v6
       id: python
       with:
-        python-version: "3.11"
+        python-version: "3.13"
     - name: Setup fontspector
       uses: fonttools/setup-fontspector@main
       env:
@@ -33,7 +33,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install ttfautohint libcairo2-dev python3-cairo-dev pkg-config python3-dev
         sudo snap install yq
-        pip install --upgrade pip
     - uses: actions/cache@v5
       with:
         path: ./venv/
